@@ -8,22 +8,34 @@ public class doorController : MonoBehaviour {
 
 	private Vector3 moveDirection = Vector3.zero;
 	private GameObject target;
+	private Transform myTarget;
+	private Transform myPosition;
 
 	void Start()
 	{
 		target = GameObject.FindWithTag("Player");
 	}
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		CharacterController controller = GetComponent<CharacterController> ();
 
-		// This causes the door to go flying off into infinity
-		moveDirection = new Vector3(target.transform.localPosition.x, 0, target.transform.localPosition.z);//Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
-		moveDirection = transform.TransformDirection (moveDirection);
-		moveDirection *= speed;
-		
-		moveDirection.y -= gravity * Time.deltaTime;
-		controller.Move(moveDirection * Time.deltaTime);
+		Vector3 relativePos = target.transform.position - transform.position;
+		Quaternion rotation = Quaternion.LookRotation(relativePos);
+		transform.rotation = rotation;
 
+		if ((Vector3.Distance (transform.position, target.transform.position) > 5))
+		{
+			transform.Translate(Vector3.forward);
+		}
+		else
+		{
+			//speed = 0;
+			moveDirection = Vector3.zero;
+
+		}
+
+		//moveDirection.y -= gravity * Time.deltaTime;
+		controller.Move (moveDirection * Time.deltaTime);
 	}
 }
