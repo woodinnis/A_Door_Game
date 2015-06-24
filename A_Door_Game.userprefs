@@ -1,9 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\doorController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\playerNavigation.cs">
     <Files>
-      <File FileName="Assets\Scripts\doorController.cs" Line="33" Column="6" />
-      <File FileName="Assets\Scripts\playerNavigation.cs" Line="29" Column="1" />
+      <File FileName="Assets\Scripts\playerNavigation.cs" Line="36" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

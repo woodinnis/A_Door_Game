@@ -7,14 +7,22 @@ public class playerNavigation : MonoBehaviour {
 	public float jumpSpeed = 4.0f;
 	public float gravity = 20.0f;
 
-	public float rotation = 45.0f;
+	public float rotation = 220.0f;
 
 	private Vector3 moveDirection = Vector3.zero;
 
+	void Awake()
+	{
+		DontDestroyOnLoad(transform.gameObject);
+
+		//if(Application.isLoadingLevel)
+		//	transform.position = Vector3.zero;
+	}
 	// Update is called once per frame
 	void Update () {
 		CharacterController controller = GetComponent<CharacterController> ();
 
+		// Basic Movement
 		moveDirection = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
 		moveDirection = transform.TransformDirection (moveDirection);
 		moveDirection *= speed;
@@ -24,5 +32,18 @@ public class playerNavigation : MonoBehaviour {
 
 		rotation += Input.GetAxis ("Mouse X");
 		transform.eulerAngles = new Vector3 (0, rotation, 0);
+
+		// If the player clicks on the door
+		if(Input.GetMouseButtonDown(0))
+		{
+			doorEnter();
+		}
+	}
+
+	// Resets the player position to zero and loads a new level
+	void doorEnter()
+	{
+		transform.position = Vector3.zero;
+		Application.LoadLevel ("_Room1");
 	}
 }
