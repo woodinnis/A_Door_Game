@@ -7,9 +7,11 @@ public class PlayerController : MonoBehaviour {
 	public float jumpSpeed = 4.0f;
 	public float gravity = 20.0f;
 
-	private Vector3 rotation = Vector3.zero;
+	private int karma = 0;
 
+	private Vector3 rotation = Vector3.zero;
 	private Vector3 moveDirection = Vector3.zero;
+
 
 	void Awake()
 	{
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Pickup")) 
 		{
 			other.gameObject.SetActive(false);
+			karma++;
 		}
 	}
 
@@ -57,6 +60,9 @@ public class PlayerController : MonoBehaviour {
 	void doorEnter()
 	{
 		transform.position = Vector3.zero;
-		Application.LoadLevel ("_Room1");
+		if(karma < 1)
+			Application.LoadLevel ("_Room1");
+		else
+			Application.LoadLevel ("_Room2");
 	}
 }
