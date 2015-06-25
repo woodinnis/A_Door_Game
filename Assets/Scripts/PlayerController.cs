@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
 	public float jumpSpeed = 4.0f;
 	public float gravity = 20.0f;
 
-	private int karma = 0;
+	public int karma = 0;
 
 	private Vector3 rotation = Vector3.zero;
 	private Vector3 moveDirection = Vector3.zero;
