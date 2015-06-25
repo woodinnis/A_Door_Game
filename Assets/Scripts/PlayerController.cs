@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector3 rotation = Vector3.zero;
 	private Vector3 moveDirection = Vector3.zero;
+	private GameObject door;
 
 
 	void Awake()
@@ -38,12 +39,6 @@ public class PlayerController : MonoBehaviour {
 		rotation.x += Input.GetAxis ("Mouse X");
 		rotation.y -= Input.GetAxis ("Mouse Y");
 		transform.eulerAngles = new Vector3(rotation.y,rotation.x,0);
-
-		// If the player clicks on the door
-		if(Input.GetMouseButtonDown(0))
-		{
-			doorEnter();
-		}
 	}
 
 	// Deactivate any elements tagged as pickups when they are collided with
@@ -56,13 +51,24 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void OnMouseOver(Collider other)
+	{
+		if (other.gameObject.CompareTag ("Door")) 
+		{
+			if(Input.GetMouseButton(0))
+				doorEnter ();
+		}
+	}
+
 	// Resets the player position to zero and loads a new level
-	void doorEnter()
+	public void doorEnter()
 	{
 		transform.position = Vector3.zero;
 		if(karma < 1)
 			Application.LoadLevel ("_Room1");
-		else
+		else if(karma < 5)
 			Application.LoadLevel ("_Room2");
+		else
+			Application.LoadLevel ("_Room3");
 	}
 }

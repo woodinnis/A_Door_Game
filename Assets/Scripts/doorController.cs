@@ -8,8 +8,8 @@ public class doorController : MonoBehaviour {
 
 	public PlayerController PScript;
 
-	public Color color1;
-	public Color color2;
+	public Color[] color;
+	//public Color color2;
 
 	private Vector3 moveDirection = Vector3.zero;
 	private GameObject target;
@@ -25,7 +25,7 @@ public class doorController : MonoBehaviour {
 
 		// Assign the renderer and starting color
 		rend = GetComponent<Renderer>();
-		rend.material.color = color1;
+		rend.material.color = color[0];
 	}
 	// Update is called once per frame
 	void Update () 
@@ -49,9 +49,28 @@ public class doorController : MonoBehaviour {
 		controller.Move (moveDirection * Time.deltaTime);
 
 		// Adjust color based on player progress
-		if (PScript.karma > 0) 
+		ChangeColor ();
+	}
+
+	void OnMouseOver()
+	{
+		if(Input.GetMouseButton(0))
+			PScript.doorEnter ();
+	}
+
+	void ChangeColor()
+	{
+		if (PScript.karma >= 1 && PScript.karma < 5) 
 		{
-			rend.material.color = color2;
+			rend.material.color = color [1];
+		} 
+		else if (PScript.karma >= 5) 
+		{
+			rend.material.color = color [2];
+		}
+		else
+		{
+			rend.material.color = color[0];
 		}
 	}
 }
