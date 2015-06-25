@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
 
 	public int karma = 0;
 
+	public coinController coin;
+
 	private Vector3 rotation = Vector3.zero;
 	private Vector3 moveDirection = Vector3.zero;
 	private GameObject door;
@@ -46,8 +48,12 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag ("Pickup")) 
 		{
-			other.gameObject.SetActive(false);
-			karma++;
+			//other.gameObject.SetActive(false);
+			coin = other.GetComponent<coinController>();
+
+			karma += coin.effect;
+
+			Destroy(other.gameObject);
 		}
 	}
 

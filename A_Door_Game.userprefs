@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\coinRotator.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
     <Files>
-      <File FileName="Assets\Scripts\doorController.cs" Line="50" Column="3" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="38" Column="44" />
-      <File FileName="Assets\Scripts\coinRotator.cs" Line="7" Column="28" />
+      <File FileName="Assets\Scripts\doorController.cs" Line="54" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="55" Column="4" />
+      <File FileName="Assets\Scripts\coinController.cs" Line="19" Column="48" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="23" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
