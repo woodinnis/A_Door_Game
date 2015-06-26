@@ -4,6 +4,9 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 
 	public Transform[] pickup;
+	public int[] KarmaLevel;
+	
+	private int karma = 0;
 
 	private float pickupCount = 0;
 	private int pickupIndex = 0;
@@ -24,8 +27,27 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-	
+	// Loads a final room according to current Karma level
+	public void doorEnter()
+	{
+		if(karma < KarmaLevel[0])
+			Application.LoadLevel ("_Room1");
+		else if(karma < KarmaLevel[1])
+			Application.LoadLevel ("_Room2");
+		else
+			Application.LoadLevel ("_Room3");
+	}
+
+	// Adjust karma level
+	public void AddKarma(int newKarma)
+	{
+		karma += newKarma;
+		if (karma < 0)
+			karma = 0;
+	}
+
+	public int GetKarma()
+	{
+		return karma;
 	}
 }

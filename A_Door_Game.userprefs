@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
     <Files>
-      <File FileName="Assets\Scripts\doorController.cs" Line="54" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="55" Column="4" />
-      <File FileName="Assets\Scripts\coinController.cs" Line="19" Column="48" />
-      <File FileName="Assets\Scripts\GameController.cs" Line="23" Column="38" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="29" Column="2" />
+      <File FileName="Assets\Scripts\doorController.cs" Line="26" Column="24" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="34" Column="5" />
+      <File FileName="Assets\Scripts\coinController.cs" Line="28" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

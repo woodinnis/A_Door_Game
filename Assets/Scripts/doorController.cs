@@ -6,10 +6,10 @@ public class doorController : MonoBehaviour {
 	public float speed = 5.0f;
 	public float gravity = 20.0f;
 
-	public PlayerController PScript;
-
+	private GameController gameController;
+	private CharacterController controller;
+	
 	public Color[] color;
-	//public Color color2;
 
 	private Vector3 moveDirection = Vector3.zero;
 	private GameObject target;
@@ -21,7 +21,11 @@ public class doorController : MonoBehaviour {
 	void Start()
 	{
 		target = GameObject.FindWithTag ("Player");		// Find the Player
-		PScript = target.GetComponent<PlayerController> ();	// Assign the player's controller
+		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
+
+		// Assign controllers
+		gameController = gameControllerObject.GetComponent<GameController> ();
+		controller = GetComponent<CharacterController> ();
 
 		// Assign the renderer and starting color
 		rend = GetComponent<Renderer>();
@@ -30,8 +34,6 @@ public class doorController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		CharacterController controller = GetComponent<CharacterController> ();
-
 		// Follow the player
 		Vector3 relativePos = target.transform.position - transform.position;
 		Quaternion rotation = Quaternion.LookRotation(relativePos);
@@ -48,23 +50,29 @@ public class doorController : MonoBehaviour {
 
 		controller.Move (moveDirection * Time.deltaTime);
 
-		// Adjust color based on player progress
-		ChangeColor ();
+		// Adjust door color based on player progress
+		ChangeDoorColor ();
 	}
 
 	void OnMouseOver()
 	{
 		if(Input.GetMouseButton(0))
-			PScript.doorEnter ();
+		{
+			gameController.doorEnter ();
+		}
 	}
 
-	void ChangeColor()
+	// Adjust the door color based on the current Karma level
+	void ChangeDoorColor()
 	{
-		if (PScript.karma >= 1 && PScript.karma < 5) 
+		int karma = gameController.GetKarma();
+		int[] level = gameController.KarmaLevel;
+
+		if (karma >= level[0] && karma < level[1]) 
 		{
 			rend.material.color = color [1];
 		} 
-		else if (PScript.karma >= 5) 
+		else if (karma >= level[1]) 
 		{
 			rend.material.color = color [2];
 		}

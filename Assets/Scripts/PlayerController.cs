@@ -7,9 +7,8 @@ public class PlayerController : MonoBehaviour {
 	public float jumpSpeed = 4.0f;
 	public float gravity = 20.0f;
 
-	public int karma = 0;
-
-	public coinController coin;
+	//private GameController gameController;
+	private CharacterController controller;
 
 	private Vector3 rotation = Vector3.zero;
 	private Vector3 moveDirection = Vector3.zero;
@@ -21,9 +20,24 @@ public class PlayerController : MonoBehaviour {
 		DontDestroyOnLoad(transform.gameObject);
 	}
 
+	void OnLevelWasLoaded(int Level)
+	{
+		// Reset Player position when loading a final room
+		if (Level > 0)
+			transform.position = Vector3.zero;
+	}
+
+	void Start()
+	{
+		//GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
+
+		//gameController = gameControllerObject.GetComponent<GameController> ();
+		controller = GetComponent<CharacterController> ();
+	}
+
 	// Update is called once per frame
 	void Update () {
-		CharacterController controller = GetComponent<CharacterController> ();
+		 
 
 		// Basic Movement
 		float moveHoriz = Input.GetAxis ("Horizontal");
@@ -41,40 +55,5 @@ public class PlayerController : MonoBehaviour {
 		rotation.x += Input.GetAxis ("Mouse X");
 		rotation.y -= Input.GetAxis ("Mouse Y");
 		transform.eulerAngles = new Vector3(rotation.y,rotation.x,0);
-	}
-
-	// Deactivate any elements tagged as pickups when they are collided with
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.CompareTag ("Pickup")) 
-		{
-			//other.gameObject.SetActive(false);
-			coin = other.GetComponent<coinController>();
-
-			karma += coin.effect;
-
-			Destroy(other.gameObject);
-		}
-	}
-
-	void OnMouseOver(Collider other)
-	{
-		if (other.gameObject.CompareTag ("Door")) 
-		{
-			if(Input.GetMouseButton(0))
-				doorEnter ();
-		}
-	}
-
-	// Resets the player position to zero and loads a new level
-	public void doorEnter()
-	{
-		transform.position = Vector3.zero;
-		if(karma < 1)
-			Application.LoadLevel ("_Room1");
-		else if(karma < 5)
-			Application.LoadLevel ("_Room2");
-		else
-			Application.LoadLevel ("_Room3");
 	}
 }
