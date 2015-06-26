@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour {
 	
 	private int karma = 0;
 
-	private float pickupCount = 0;
+	private int pickupCount = 0;
 	private int pickupIndex = 0;
 
 	// Use this for initialization
@@ -18,12 +18,21 @@ public class GameController : MonoBehaviour {
 		pickupCount = Random.Range(5,9);
 		for(int i = 0; i < pickupCount; i++)
 		{
-			pickupIndex = (int)Random.value * pickup.Length;
+			pickupIndex = Random.Range(0,pickup.Length);
 			Transform me = pickup[pickupIndex];
 			Transform here = (Transform)Instantiate(me, new Vector3(i * 5f, 0.5f, 10f), Quaternion.identity);
-			 
-			coinController thing = here.GetComponent<coinController>();
-			thing.effect = Random.Range(-1,2);
+
+			if(here.CompareTag("Coin"))
+			{
+				coinController thing = here.GetComponent<coinController>();
+				thing.effect = Random.Range(-1,2);
+			}
+			if(here.CompareTag("NPC"))
+			{
+				NPCController npc = here.GetComponent<NPCController>();
+				npc.SeeMe = Random.Range(-5,5);
+				npc.MeetMe = Random.Range(-10,10);
+			}
 		}
 	}
 
