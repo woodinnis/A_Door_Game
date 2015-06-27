@@ -39,11 +39,11 @@ public class GameController : MonoBehaviour {
 	// Loads a final room according to current Karma level
 	public void doorEnter()
 	{
-		if(karma < KarmaLevel[0])
+		if(karma < KarmaLevel[1])
 			Application.LoadLevel ("_Room1");
-		else if(karma < KarmaLevel[1])
+		else if(karma < KarmaLevel[2])
 			Application.LoadLevel ("_Room2");
-		else
+		else if(karma < KarmaLevel[3])
 			Application.LoadLevel ("_Room3");
 	}
 
@@ -51,8 +51,8 @@ public class GameController : MonoBehaviour {
 	public void AddKarma(int newKarma)
 	{
 		karma += newKarma;
-		if (karma < 0)
-			karma = 0;
+		if (karma < KarmaLevel[0])
+			karma = KarmaLevel[0];
 	}
 
 	public int GetKarma()
