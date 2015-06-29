@@ -6,8 +6,7 @@ public class PlayerController : MonoBehaviour {
 	public float speed = 6.0f;
 	public float jumpSpeed = 4.0f;
 	public float gravity = 20.0f;
-
-	//private GameController gameController;
+	
 	private CharacterController controller;
 
 	private Vector3 rotation = Vector3.zero;
@@ -29,9 +28,6 @@ public class PlayerController : MonoBehaviour {
 
 	void Start()
 	{
-		//GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
-
-		//gameController = gameControllerObject.GetComponent<GameController> ();
 		controller = GetComponent<CharacterController> ();
 	}
 

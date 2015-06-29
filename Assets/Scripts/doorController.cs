@@ -5,6 +5,7 @@ public class doorController : MonoBehaviour {
 
 	public float speed = 5.0f;
 	public float gravity = 20.0f;
+	public int distanceFromPlayer = 5;
 
 	private GameController gameController;
 	private CharacterController controller;
@@ -39,7 +40,7 @@ public class doorController : MonoBehaviour {
 		Quaternion rotation = Quaternion.LookRotation(relativePos);
 		transform.rotation = rotation;
 
-		if ((Vector3.Distance (transform.position, target.transform.position) > 5)) 
+		if ((Vector3.Distance (transform.position, target.transform.position) > distanceFromPlayer)) 
 		{
 			transform.Translate (Vector3.forward);
 		} 
@@ -68,17 +69,21 @@ public class doorController : MonoBehaviour {
 		int karma = gameController.GetKarma();
 		int[] level = gameController.KarmaLevel;
 
-		if (karma >= level[0] && karma < level[1]) 
+		if (karma < level[1]) 
+		{
+			rend.material.color = color [0];
+		} 
+		else if (karma >= level[1] && karma < level[2])
 		{
 			rend.material.color = color [1];
-		} 
-		else if (karma >= level[1]) 
-		{
-			rend.material.color = color [2];
 		}
-		else
+		else if (karma >= level[2] && karma < level[3])
 		{
-			rend.material.color = color[0];
+			rend.material.color = color[2];
+		}
+		else if (karma >= level[3])
+		{
+			rend.material.color = color[3];
 		}
 	}
 }

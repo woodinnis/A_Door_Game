@@ -23,12 +23,9 @@ public class NPCController : MonoBehaviour {
 		gameController.AddKarma (SeeMe);
 	}
 
-	void OnMouseOver()
+	void OnMouseDown()
 	{
-		if(Input.GetMouseButton(0))
-		{
-			gameController.AddKarma (MeetMe);
-		}
+		gameController.AddKarma (MeetMe);
 	}
 	
 }
