@@ -12,13 +12,14 @@ public class NPCController : MonoBehaviour {
 	void Start () 
 	{
 		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
-		
+
 		gameController = gameControllerObject.GetComponent<GameController> ();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+	{
+
 	}
 
 	void OnTriggerEnter()
@@ -33,4 +34,5 @@ public class NPCController : MonoBehaviour {
 			gameController.AddKarma (MeetMe);
 		}
 	}
+	
 }

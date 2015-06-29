@@ -31,4 +31,9 @@ public class coinController : MonoBehaviour {
 			gameController.totalPickups--;
 		}
 	}
+
+	void OnBecameInvisible()
+	{
+		Destroy (gameObject);
+	}
 }
