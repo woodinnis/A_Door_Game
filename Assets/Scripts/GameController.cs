@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour {
 	private int pickupCount = 0;
 	private int pickupIndex = 0;
 
+	private CharacterController characterController;
+
 	private float pX,pZ,pY;
 
 	// Use this for initialization
@@ -31,11 +33,14 @@ public class GameController : MonoBehaviour {
 		Vector3 pStart = new Vector3 (pX, pY + 1, pZ);
 		Instantiate(player,pStart,Quaternion.identity);
 
+		GameObject characterControllerObject = GameObject.FindWithTag ("Player");
+		characterController = characterControllerObject.GetComponent<CharacterController> ();
+
 		pickupCount = Random.Range(5,9);
 
 		for(int i = 0; i < pickupCount; i++)
 		{
-			AddPickups();
+			AddPickups(characterController.transform);
 		}
 	}
 
@@ -43,7 +48,7 @@ public class GameController : MonoBehaviour {
 	{
 		if(totalPickups < pickupCount)
 		{
-			AddPickups();
+			AddPickups(characterController.transform);
 		}
 	}
 	// Loads a final room according to current Karma level
@@ -70,10 +75,10 @@ public class GameController : MonoBehaviour {
 		return karma;
 	}
 
-	public void AddPickups()
+	public void AddPickups(Transform P)
 	{
-		float mX = Random.Range (pX - spawnDistance, pX + spawnDistance);
-		float mZ = Random.Range (pZ - spawnDistance, pZ + spawnDistance);
+		float mX = Random.Range (P.position.x - spawnDistance, P.position.x + spawnDistance);
+		float mZ = Random.Range (P.position.z - spawnDistance, P.position.z + spawnDistance);
 		float mY = world.terrainData.GetHeight ((int)mX, (int)mZ);
 		
 		pickupIndex = Random.Range(0,pickup.Length);

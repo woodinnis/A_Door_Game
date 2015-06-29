@@ -16,12 +16,8 @@ public class NPCController : MonoBehaviour {
 		gameController = gameControllerObject.GetComponent<GameController> ();
 	}
 	
-	// Update is called once per frame
-	void Update () 
-	{
-
-	}
-
+	// This function is giving frequent Object Reference errors.
+	// It's possible that it's being triggered before all assets are in place
 	void OnTriggerEnter()
 	{
 		gameController.AddKarma (SeeMe);

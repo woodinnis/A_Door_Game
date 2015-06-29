@@ -1,13 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\coinController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NPCController.cs">
     <Files>
-      <File FileName="Assets\Scripts\coinController.cs" Line="35" Column="2" />
-      <File FileName="Assets\Scripts\GameController.cs" Line="69" Column="3" />
-      <File FileName="Assets\Scripts\doorController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\coinController.cs" Line="28" Column="36" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="75" Column="16" />
+      <File FileName="Assets\Scripts\doorController.cs" Line="51" Column="52" />
       <File FileName="Assets\Scripts\PlayerController.cs" Line="25" Column="53" />
-      <File FileName="Assets\Scripts\NPCController.cs" Line="14" Column="79" />
-      <File FileName="Assets\Scripts\PickupDestroy.cs" Line="6" Column="73" />
+      <File FileName="Assets\Scripts\NPCController.cs" Line="19" Column="46" />
+      <File FileName="Assets\Scripts\PickupDestroy.cs" Line="39" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
