@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NPCController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameController.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameController.cs" Line="34" Column="39" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="81" Column="69" />
       <File FileName="Assets\Scripts\doorController.cs" Line="63" Column="3" />
       <File FileName="Assets\Scripts\PlayerController.cs" Line="25" Column="53" />
-      <File FileName="Assets\Scripts\coinController.cs" Line="16" Column="73" />
+      <File FileName="Assets\Scripts\coinController.cs" Line="31" Column="34" />
       <File FileName="Assets\Scripts\NPCController.cs" Line="11" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>

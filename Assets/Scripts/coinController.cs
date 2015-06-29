@@ -28,6 +28,7 @@ public class coinController : MonoBehaviour {
 			gameController.AddKarma(effect);
 
 			Destroy(gameObject);
+			gameController.totalPickups--;
 		}
 	}
 }
