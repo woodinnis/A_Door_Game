@@ -53,6 +53,8 @@
      <Compile Include="Assets\Scripts\coinController.cs" />
      <Compile Include="Assets\Scripts\doorController.cs" />
      <None Include="Assets\Materials\Wood texture floor_01\readme.txt" />
+     <None Include="Assets\DialogueGood.txt" />
+     <None Include="Assets\DialogueBad.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
