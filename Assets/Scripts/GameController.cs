@@ -97,8 +97,14 @@ public class GameController : MonoBehaviour {
 	public void AddPickups(Transform P)
 	{
 		// Set random coordinates based on player position, and terrain height
-		float mX = Random.Range (P.position.x - spawnDistance, P.position.x + spawnDistance);
-		float mZ = Random.Range (P.position.z - spawnDistance, P.position.z + spawnDistance);
+		float mX = -1;
+		float mZ = -1;
+		while(mX < 0 || mX > world.terrainData.size.x)	// Ensure no spawn point is outside the terrain x-axis
+			mX = Random.Range (P.position.x - spawnDistance, P.position.x + spawnDistance);
+
+		while(mZ < 0 || mZ > world.terrainData.size.z)	// Ensure no spawn point is outside the terrain z-axis
+			mZ = Random.Range (P.position.z - spawnDistance, P.position.z + spawnDistance);
+
 		float mY = world.terrainData.GetHeight ((int)mX, (int)mZ);
 
 		// Choose a random pickup from the available list and place it in the world
