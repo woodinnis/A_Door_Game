@@ -1,12 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PickupDestroy.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\doorController.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameController.cs" Line="105" Column="104" />
+      <File FileName="Assets\Scripts\doorController.cs" Line="50" Column="66" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="38" Column="40" />
       <File FileName="Assets\Scripts\coinController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\doorController.cs" Line="86" Column="35" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="14" Column="26" />
-      <File FileName="Assets\Scripts\NPCController.cs" Line="39" Column="7" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\NPCController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PickupDestroy.cs" Line="39" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>

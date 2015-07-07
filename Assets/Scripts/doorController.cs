@@ -40,15 +40,25 @@ public class doorController : MonoBehaviour {
 		Quaternion rotation = Quaternion.LookRotation(relativePos);
 		transform.rotation = rotation;
 
-		if ((Vector3.Distance (transform.position, target.transform.position) > distanceFromPlayer)) 
-		{
-			transform.Translate (Vector3.forward);
-		} 
-		else 
-		{
-			moveDirection = Vector3.zero;
-		}
+		int karma = gameController.GetKarma ();
+		bool doorHasArrived = false;
 
+		// Set the door to arrived and move towards the player when player karma goes above 0
+		if (karma > 0 && doorHasArrived == false)
+			doorHasArrived = true;
+
+		// Move the door towards the player when door is set to Arrived
+		if(doorHasArrived == true)
+		{
+			if ((Vector3.Distance (transform.position, target.transform.position) > distanceFromPlayer)) 
+			{
+				transform.Translate (Vector3.forward);
+			} 
+			else 
+			{
+				moveDirection = Vector3.zero;
+			}
+		}
 		controller.Move (moveDirection * Time.deltaTime);
 
 		// Adjust door color based on player progress

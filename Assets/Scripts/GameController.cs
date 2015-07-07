@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour {
 
 		// Spawn the player
 		Vector3 pStart = new Vector3 (pX, pY + 1, pZ);
-		Vector3 dStart = new Vector3 (pX, pY, pZ);
+		Vector3 dStart = new Vector3 (0, 1, 0);
 		Instantiate(player,pStart,Quaternion.identity);
 		Instantiate (door, dStart, Quaternion.identity);
 
