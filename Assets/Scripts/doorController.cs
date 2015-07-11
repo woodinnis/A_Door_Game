@@ -6,6 +6,7 @@ public class doorController : MonoBehaviour {
 	public float speed = 5.0f;
 	public float gravity = 20.0f;
 	public int distanceFromPlayer = 5;
+	public float AdjustSpawnY;
 
 	private GameController gameController;
 	private CharacterController controller;
@@ -63,6 +64,13 @@ public class doorController : MonoBehaviour {
 
 		// Adjust door color based on player progress
 		ChangeDoorColor ();
+	}
+
+	// Ensures The Door remain at or above the terrain height at the terrain X,Y position
+	void LateUpdate() {
+		Vector3 pos = transform.position;
+		pos.y = (Terrain.activeTerrain.SampleHeight(transform.position) + AdjustSpawnY);
+		transform.position = pos;
 	}
 
 	void OnMouseOver()

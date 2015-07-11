@@ -9,6 +9,7 @@ public class NPCController : MonoBehaviour {
 	public Color[] NPCColor;
 	public TextAsset GoodDFile;
 	public TextAsset BadDFile;
+	public float AdjustSpawnY;
 
 	private GameController gameController;
 	private Collider trigger;
@@ -43,6 +44,13 @@ public class NPCController : MonoBehaviour {
 		BadDialogue = BadDFile.text.Split ('\n');
 		GLong = GoodDialogue.Length;
 		BLong = BadDialogue.Length;
+	}
+
+	// Ensures NPCs remain at or above the terrain height at the terrain X,Y position
+	void LateUpdate() {
+		Vector3 pos = transform.position;
+		pos.y = (Terrain.activeTerrain.SampleHeight(transform.position) + AdjustSpawnY);
+		transform.position = pos;
 	}
 
 	// This function is giving frequent Object Reference errors.

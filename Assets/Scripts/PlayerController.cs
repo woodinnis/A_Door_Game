@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 	public float speed = 6.0f;
 	public float jumpSpeed = 4.0f;
 	public float gravity = 20.0f;
+	public float AdjustSpawnY;
 	
 	private CharacterController controller;
 
@@ -33,7 +34,6 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		 
-
 		// Basic Movement
 		float moveHoriz = Input.GetAxis ("Horizontal");
 		float moveVert = Input.GetAxis ("Vertical");
@@ -50,5 +50,12 @@ public class PlayerController : MonoBehaviour {
 		rotation.x += Input.GetAxis ("Mouse X");
 		rotation.y -= Input.GetAxis ("Mouse Y");
 		transform.eulerAngles = new Vector3(rotation.y,rotation.x,0);
+	}
+
+	// Ensures player remains at or above the terrain height at the terrain X,Y position
+	void LateUpdate() {
+		Vector3 pos = transform.position;
+		pos.y = (Terrain.activeTerrain.SampleHeight(transform.position) + AdjustSpawnY);
+		transform.position = pos;
 	}
 }
