@@ -10,12 +10,14 @@ public class NPCController : MonoBehaviour {
 	public TextAsset GoodDFile;
 	public TextAsset BadDFile;
 	public float AdjustSpawnY;
+	public float speed = 3.5f;
 
 	private GameController gameController;
 	private Collider trigger;
 	private Renderer rend;
 	private Text text;
 
+	private bool isHere = false;
 	private string[] GoodDialogue;
 	private string[] BadDialogue;
 	private int GLong;
@@ -46,6 +48,26 @@ public class NPCController : MonoBehaviour {
 		BLong = BadDialogue.Length;
 	}
 
+	void Update()
+	{
+		NavMeshAgent agent = GetComponent<NavMeshAgent>();
+
+		if (!isHere)
+		{
+			Vector3 goHere = new Vector3(0,0,0);
+
+			while(Vector3.Distance(agent.destination > 10f))
+				 goHere = GetMoveLocation();
+
+			agent.destination = goHere;
+			agent.speed = speed;
+			isHere = true;
+		}
+		else if(transform.position == agent.destination)
+		{
+			isHere = false;
+		}
+	}
 	// Ensures NPCs remain at or above the terrain height at the terrain X,Y position
 	void LateUpdate() {
 		Vector3 pos = transform.position;
@@ -74,5 +96,12 @@ public class NPCController : MonoBehaviour {
 		else
 			text.text = BadDialogue [Random.Range (0, BLong)];
 	}
-	
+	Vector3 GetMoveLocation()
+	{
+		Terrain world = Terrain.activeTerrain;
+		float pX = Random.Range (transform.position.x, world.terrainData.size.x);
+		float pZ = Random.Range (transform.position.z, world.terrainData.size.z);
+		Vector3 dest = new Vector3 (pX, 0, pZ);
+		return dest;
+	}
 }

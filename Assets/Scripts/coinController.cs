@@ -6,6 +6,7 @@ public class coinController : MonoBehaviour {
 	// Use this for initialization
 	public float speed = 5.0f;
 	public int effect = 0;
+	public float AdjustSpawnY;
 
 	private GameController gameController;
 
@@ -19,6 +20,12 @@ public class coinController : MonoBehaviour {
 	void Update () 
 	{
 		transform.Rotate(speed * Time.deltaTime, 0, 0);
+	}
+
+	void LateUpdate() {
+		Vector3 pos = transform.position;
+		pos.y = (Terrain.activeTerrain.SampleHeight(transform.position) + AdjustSpawnY);
+		transform.position = pos;
 	}
 
 	void OnTriggerEnter(Collider other)

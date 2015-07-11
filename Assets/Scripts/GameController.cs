@@ -3,6 +3,9 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
+	// The Terrain.SampleHeight YAdjust LateUpdate function is being used by almost every controller
+	// Creating a more globally accessable function here would be ideal
+
 	public Transform[] pickup;
 	public int[] KarmaLevel;
 	public int PickupMin = 6;
