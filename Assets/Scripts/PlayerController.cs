@@ -53,9 +53,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	// Ensures player remains at or above the terrain height at the terrain X,Y position
-	void LateUpdate() {
-		Vector3 pos = transform.position;
-		pos.y = (Terrain.activeTerrain.SampleHeight(transform.position) + AdjustSpawnY);
-		transform.position = pos;
+	void LateUpdate(){
+		if(!(Application.loadedLevel > 0))
+		{
+			Vector3 pos = transform.position;
+			pos.y = (Terrain.activeTerrain.SampleHeight(transform.position) + AdjustSpawnY);
+			transform.position = pos;
+		}
 	}
 }

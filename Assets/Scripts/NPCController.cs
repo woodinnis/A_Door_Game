@@ -23,6 +23,7 @@ public class NPCController : MonoBehaviour {
 	private int GLong;
 	private int BLong;
 	private Vector3 goHere = Vector3.zero;
+	private float ResetSpeed;
 
 	// Use this for initialization
 	void Start () 
@@ -47,6 +48,7 @@ public class NPCController : MonoBehaviour {
 		BadDialogue = BadDFile.text.Split ('\n');
 		GLong = GoodDialogue.Length;
 		BLong = BadDialogue.Length;
+		ResetSpeed = speed;
 	}
 
 	void Update()
@@ -84,8 +86,6 @@ public class NPCController : MonoBehaviour {
 		transform.position = pos;
 	}
 
-	// This function is giving frequent Object Reference errors.
-	// It's possible that it's being triggered before all assets are in place
 	void OnTriggerEnter()
 	{
 		gameController.AddKarma (SeeMe);
@@ -95,10 +95,13 @@ public class NPCController : MonoBehaviour {
 	void OnMouseExit()
 	{
 		text.text = ("");
+		speed = ResetSpeed;
 	}
 
 	void OnMouseDown()
 	{
+		speed = 0f;
+
 		gameController.AddKarma (MeetMe);
 		if (MeetMe > 0)
 			text.text = GoodDialogue [Random.Range (0, GLong)];
