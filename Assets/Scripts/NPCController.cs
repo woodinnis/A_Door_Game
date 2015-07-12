@@ -22,6 +22,7 @@ public class NPCController : MonoBehaviour {
 	private string[] BadDialogue;
 	private int GLong;
 	private int BLong;
+	private Vector3 goHere = Vector3.zero;
 
 	// Use this for initialization
 	void Start () 
@@ -51,20 +52,28 @@ public class NPCController : MonoBehaviour {
 	void Update()
 	{
 		NavMeshAgent agent = GetComponent<NavMeshAgent>();
+		agent.speed = speed;
 
+		// Randomly generate a path for the NPC to follow around the world
 		if (!isHere)
 		{
-			Vector3 goHere = new Vector3(0,0,0);
+			while(Vector3.Distance(goHere, transform.position) > 100.0f || Vector3.Distance(goHere, transform.position) < 5.0f)
+			{
+				print (goHere);
+				goHere = GetMoveLocation();
+			}
 
-			while(Vector3.Distance(agent.destination > 10f))
-				 goHere = GetMoveLocation();
-
+			// Set NPC destination
 			agent.destination = goHere;
-			agent.speed = speed;
+
 			isHere = true;
 		}
-		else if(transform.position == agent.destination)
+		// When the NPC reaches its current destination reset all key variables
+		else if(transform.position.x == agent.destination.x &&
+		        transform.position.z == agent.destination.z)
 		{
+			goHere = Vector3.zero;
+
 			isHere = false;
 		}
 	}
@@ -96,11 +105,12 @@ public class NPCController : MonoBehaviour {
 		else
 			text.text = BadDialogue [Random.Range (0, BLong)];
 	}
+
 	Vector3 GetMoveLocation()
 	{
 		Terrain world = Terrain.activeTerrain;
-		float pX = Random.Range (transform.position.x, world.terrainData.size.x);
-		float pZ = Random.Range (transform.position.z, world.terrainData.size.z);
+		float pX = Random.Range (0, world.terrainData.size.x);
+		float pZ = Random.Range (0, world.terrainData.size.z);
 		Vector3 dest = new Vector3 (pX, 0, pZ);
 		return dest;
 	}
