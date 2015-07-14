@@ -55,6 +55,7 @@
      <None Include="Assets\Materials\Wood texture floor_01\readme.txt" />
      <None Include="Assets\DialogueGood.txt" />
      <None Include="Assets\DialogueBad.txt" />
+     <None Include="Assets\DialogueDoor.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

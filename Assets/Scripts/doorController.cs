@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class doorController : MonoBehaviour {
@@ -7,6 +8,7 @@ public class doorController : MonoBehaviour {
 	public float gravity = 20.0f;
 	public int distanceFromPlayer = 5;
 	public float AdjustSpawnY;
+	public TextAsset DoorDialogueFile;
 
 	private GameController gameController;
 	private CharacterController controller;
@@ -17,6 +19,9 @@ public class doorController : MonoBehaviour {
 	private GameObject target;
 	private Transform myTarget;
 	private Transform myPosition;
+	private string[] DoorDialogue;
+	private int DialogueLong;
+	private Text text;
 
 	private Renderer rend;
 
@@ -25,6 +30,10 @@ public class doorController : MonoBehaviour {
 		target = GameObject.FindWithTag ("Player");		// Find the Player
 		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
 
+		// Find the UI object, and set the Text property to a variable
+		GameObject textObject = GameObject.FindWithTag ("UI");
+		text = textObject.GetComponent<Text> ();
+
 		// Assign controllers
 		gameController = gameControllerObject.GetComponent<GameController> ();
 		controller = GetComponent<CharacterController> ();
@@ -32,6 +41,9 @@ public class doorController : MonoBehaviour {
 		// Assign the renderer and starting color
 		rend = GetComponent<Renderer>();
 		rend.material.color = color[0];
+
+		DoorDialogue = DoorDialogueFile.text.Split ('\n');
+		DialogueLong = DoorDialogue.Length;
 	}
 	// Update is called once per frame
 	void Update () 
@@ -103,5 +115,14 @@ public class doorController : MonoBehaviour {
 		{
 			rend.material.color = color[3];
 		}
+	}
+
+	void OnMouseEnter()
+	{
+		text.text = DoorDialogue [Random.Range (0, DialogueLong)];
+	}
+	void OnMouseExit()
+	{
+		text.text = "";
 	}
 }
