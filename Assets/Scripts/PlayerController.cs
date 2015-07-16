@@ -16,10 +16,18 @@ public class PlayerController : MonoBehaviour {
 	private GameObject door;
 
 	private float pX,pZ,pY;
+	private Vector3 pStart;
 
 	void Awake()
 	{
 		DontDestroyOnLoad(transform.gameObject);
+
+		// Generate random world coordinates and et the player start position
+		pX = Random.Range (transform.position.x, world.terrainData.size.x);
+		pZ = Random.Range (transform.position.z, world.terrainData.size.z);
+		pY = world.terrainData.GetHeight ((int)pX, (int)pZ);
+
+		pStart = new Vector3 (pX, pY + 1, pZ);
 	}
 
 	void OnLevelWasLoaded(int Level)
@@ -32,14 +40,9 @@ public class PlayerController : MonoBehaviour {
 	void Start()
 	{
 		controller = GetComponent<CharacterController> ();
-		// Randomly generate a player spawn location
 
-		pX = Random.Range (transform.position.x, world.terrainData.size.x);
-		pZ = Random.Range (transform.position.z, world.terrainData.size.z);
-		pY = world.terrainData.GetHeight ((int)pX, (int)pZ);
-		
-		// Spawn the player
-		Vector3 pStart = new Vector3 (pX, pY + 1, pZ);
+		// Move the player to start
+		transform.position = pStart;
 	}
 
 	// Update is called once per frame
