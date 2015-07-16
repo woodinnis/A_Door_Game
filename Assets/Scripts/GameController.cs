@@ -24,22 +24,13 @@ public class GameController : MonoBehaviour {
 
 	private CharacterController characterController;
 	private Camera gameCamera;
-
-	private float pX,pZ,pY;
-
+	
 	// Use this for initialization
 	void Start () {
 		Random.seed = (int)System.DateTime.Now.Second;
-
-		// Randomly generate a player spawn location
-		pX = Random.Range (world.transform.position.x, world.terrainData.size.x);
-		pZ = Random.Range (world.transform.position.z, world.terrainData.size.z);
-		pY = world.terrainData.GetHeight ((int)pX, (int)pZ);
-
-		// Spawn the player
-		Vector3 pStart = new Vector3 (pX, pY + 1, pZ);
+	
 		Vector3 dStart = new Vector3 (0, 1, 0);
-		Instantiate(player,pStart,Quaternion.identity);
+		//Instantiate(player,pStart,Quaternion.identity);
 		Instantiate (door, dStart, Quaternion.identity);
 
 		// Assign Character component

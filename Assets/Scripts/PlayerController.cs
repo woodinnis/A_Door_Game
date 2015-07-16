@@ -7,12 +7,15 @@ public class PlayerController : MonoBehaviour {
 	public float jumpSpeed = 4.0f;
 	public float gravity = 20.0f;
 	public float AdjustSpawnY;
+	public Terrain world;
 	
 	private CharacterController controller;
 
 	private Vector3 rotation = Vector3.zero;
 	private Vector3 moveDirection = Vector3.zero;
 	private GameObject door;
+
+	private float pX,pZ,pY;
 
 	void Awake()
 	{
@@ -29,6 +32,14 @@ public class PlayerController : MonoBehaviour {
 	void Start()
 	{
 		controller = GetComponent<CharacterController> ();
+		// Randomly generate a player spawn location
+
+		pX = Random.Range (transform.position.x, world.terrainData.size.x);
+		pZ = Random.Range (transform.position.z, world.terrainData.size.z);
+		pY = world.terrainData.GetHeight ((int)pX, (int)pZ);
+		
+		// Spawn the player
+		Vector3 pStart = new Vector3 (pX, pY + 1, pZ);
 	}
 
 	// Update is called once per frame
