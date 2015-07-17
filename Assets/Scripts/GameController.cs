@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
 
 	private CharacterController characterController;
 	private Camera gameCamera;
-	
+
 	// Use this for initialization
 	void Start () {
 		Random.seed = (int)System.DateTime.Now.Second;
