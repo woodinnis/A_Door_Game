@@ -29,8 +29,8 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		Random.seed = (int)System.DateTime.Now.Second;
 	
+		// Instatiate the door into the world
 		Vector3 dStart = new Vector3 (0, 1, 0);
-		//Instantiate(player,pStart,Quaternion.identity);
 		Instantiate (door, dStart, Quaternion.identity);
 
 		// Assign Character component

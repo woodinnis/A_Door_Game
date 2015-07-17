@@ -30,7 +30,7 @@ public class NPCController : MonoBehaviour {
 	{
 		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
 		GameObject textObject = GameObject.FindWithTag ("UI");
-
+		
 		text = textObject.GetComponent<Text> ();
 		gameController = gameControllerObject.GetComponent<GameController> ();
 
@@ -53,6 +53,7 @@ public class NPCController : MonoBehaviour {
 
 	void Update()
 	{
+
 		NavMeshAgent agent = GetComponent<NavMeshAgent>();
 		agent.speed = speed;
 
@@ -66,7 +67,8 @@ public class NPCController : MonoBehaviour {
 			}
 
 			// Set NPC destination
-			agent.destination = goHere;
+			if(agent.isOnNavMesh)
+				agent.destination = goHere;
 
 			isHere = true;
 		}
@@ -78,6 +80,8 @@ public class NPCController : MonoBehaviour {
 
 			isHere = false;
 		}
+
+
 	}
 	// Ensures NPCs remain at or above the terrain height at the terrain X,Y position
 	void LateUpdate() {
