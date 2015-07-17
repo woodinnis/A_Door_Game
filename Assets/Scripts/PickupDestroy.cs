@@ -6,7 +6,7 @@ public class PickupDestroy : MonoBehaviour {
 	public int buffer;	// Allow some extra range outside the clipping plane
 
 	private CharacterController characterController;
-	private GameController gameController;
+	private InstantiationController instantiationController;
 	private Renderer pickupRenderer;
 	private Camera GameCamera;
 
@@ -14,11 +14,11 @@ public class PickupDestroy : MonoBehaviour {
 	void Start () {
 		GameObject GameCameraObject = GameObject.FindWithTag ("MainCamera");
 		GameObject CharacterControllerObject = GameObject.FindWithTag ("Player");
-		GameObject GameControllerObject = GameObject.FindWithTag ("GameController");
+		GameObject InstantiationControllerObject = GameObject.FindWithTag ("GameController");
 
 		GameCamera = GameCameraObject.GetComponent<Camera>();
 		characterController = CharacterControllerObject.GetComponent<CharacterController> ();
-		gameController = GameControllerObject.GetComponent<GameController> ();
+		instantiationController = InstantiationControllerObject.GetComponent<InstantiationController> ();
 
 		pickupRenderer = GetComponent<Renderer> ();
 	}
@@ -36,7 +36,7 @@ public class PickupDestroy : MonoBehaviour {
 			   transform.position.z < Pplace.position.z - (GameCamera.farClipPlane + buffer))
 			{
 				Destroy(gameObject);
-				gameController.totalPickups--;
+				instantiationController.totalPickups--;
 			}
 		}
 	}

@@ -8,13 +8,16 @@ public class coinController : MonoBehaviour {
 	public int effect = 0;
 	public float AdjustSpawnY;
 
+	private InstantiationController instantiationController;
 	private GameController gameController;
 
 	void Start()
 	{
-		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
+		GameObject InstantiationControllerObject = GameObject.FindWithTag ("GameController");
+		GameObject GameControllerObject = GameObject.FindWithTag("GameController");
 
-		gameController = gameControllerObject.GetComponent<GameController> ();
+		instantiationController = InstantiationControllerObject.GetComponent<InstantiationController> ();
+		gameController = GameControllerObject.GetComponent<GameController>();
 	}
 	// Update is called once per frame
 	void Update () 
@@ -35,7 +38,7 @@ public class coinController : MonoBehaviour {
 			gameController.AddKarma(effect);
 
 			Destroy(gameObject);
-			gameController.totalPickups--;
+			instantiationController.totalPickups--;
 		}
 	}
 }
