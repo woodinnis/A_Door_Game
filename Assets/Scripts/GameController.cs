@@ -7,17 +7,20 @@ public class GameController : MonoBehaviour {
 	// Creating a more globally accessable function here would be ideal
 
 	public int[] KarmaLevel;
+	public Canvas MainCanvas;
+	public Camera MainCamera;
 
 	private int karma = 0;
 		
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 
 	}
 
 	void Update()
 	{
-
+		//MainCamera.rect.x = MainCanvas.transform.position.x;
 	}
 	// Loads a final room according to current Karma level
 	public void doorEnter()
