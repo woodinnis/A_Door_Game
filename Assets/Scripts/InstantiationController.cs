@@ -15,6 +15,8 @@ public class InstantiationController : MonoBehaviour {
 	private float spawnDistance;
 	
 	public Transform door;
+	public Transform oldMan;
+	public float oldManSpawnDistance = 0.0f;
 	public Terrain world;
 
 	private CharacterController characterController;
@@ -35,6 +37,12 @@ public class InstantiationController : MonoBehaviour {
 		// Instatiate the door into the world
 		Vector3 dStart = new Vector3 (0, 1, 0);
 		Instantiate (door, dStart, Quaternion.identity);
+
+		// Instantiate Old Man into the world
+		Transform CC = characterController.transform;
+		Vector3 oldManStart = new Vector3(CC.position.x + oldManSpawnDistance, 1, CC.position.z + oldManSpawnDistance);
+		Instantiate (oldMan, oldManStart, Quaternion.identity);
+
 
 		// Spawn pickups
 		for(int i = 0; i < pickupCount; i++)
