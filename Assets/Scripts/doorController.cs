@@ -22,6 +22,7 @@ public class doorController : MonoBehaviour {
 	private string[] DoorDialogue;
 	private int DialogueLong;
 	private Text text;
+	private bool doorHasArrived = false;
 
 	private Renderer rend;
 
@@ -53,25 +54,9 @@ public class doorController : MonoBehaviour {
 		Quaternion rotation = Quaternion.LookRotation(relativePos);
 		transform.rotation = rotation;
 
-		int karma = gameController.GetKarma ();
-		bool doorHasArrived = false;
+		// Follow the player
+		DoorFollow();
 
-		// Set the door to arrived and move towards the player when player karma goes above 0
-		if (karma > 0 && doorHasArrived == false)
-			doorHasArrived = true;
-
-		// Move the door towards the player when door is set to Arrived
-		if(doorHasArrived == true)
-		{
-			if ((Vector3.Distance (transform.position, target.transform.position) > distanceFromPlayer)) 
-			{
-				transform.Translate (Vector3.forward);
-			} 
-			else 
-			{
-				moveDirection = Vector3.zero;
-			}
-		}
 		controller.Move (moveDirection * Time.deltaTime);
 
 		// Adjust door color based on player progress
@@ -114,6 +99,26 @@ public class doorController : MonoBehaviour {
 		else if (karma >= level[3])
 		{
 			rend.material.color = color[3];
+		}
+	}
+
+	void DoorFollow()
+	{
+		// Set the door to arrived and move towards the player when player karma goes above 0
+		if (gameController.oldManTalk == true && doorHasArrived == false)
+			doorHasArrived = true;
+		
+		// Move the door towards the player when door is set to Arrived
+		if(doorHasArrived == true)
+		{
+			if ((Vector3.Distance (transform.position, target.transform.position) > distanceFromPlayer)) 
+			{
+				transform.Translate (Vector3.forward);
+			} 
+			else 
+			{
+				moveDirection = Vector3.zero;
+			}
 		}
 	}
 

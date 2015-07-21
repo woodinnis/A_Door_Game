@@ -62,7 +62,6 @@ public class NPCController : MonoBehaviour {
 		{
 			while(Vector3.Distance(goHere, transform.position) > 100.0f || Vector3.Distance(goHere, transform.position) < 5.0f)
 			{
-				print (goHere);
 				goHere = GetMoveLocation();
 			}
 
