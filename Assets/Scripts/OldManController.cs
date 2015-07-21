@@ -7,11 +7,13 @@ public class OldManController : MonoBehaviour {
 	public float AdjustY;
 	public TextAsset DialogueFile;
 	public float timeToWait;
+	public float walkSpeed;
 
 	private GameController game;
 	private string[] Dialogue;
 	private int dialogueLength;
 	private Text text;
+	private bool isTalking = false;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +26,14 @@ public class OldManController : MonoBehaviour {
 		Dialogue = DialogueFile.text.Split ('\n');
 		dialogueLength = Dialogue.Length;
 	}
-	
+
+	void Update(){
+
+		if(game.oldManTalk)
+		{
+			transform.position = Vector3.Lerp(transform.position,Vector3.zero, Time.deltaTime * walkSpeed);
+		}
+	}
 	// Update is called once per frame
 	void LateUpdate () {
 		Vector3 pos = transform.position;
@@ -35,13 +44,14 @@ public class OldManController : MonoBehaviour {
 	void OnMouseEnter(){
 		//for(int i = 0; i < dialogueLength; i++)
 		//{
+		if(!game.oldManTalk && !isTalking)
+		{
+			isTalking = true;
 			StartCoroutine(Speek());
+		}
 			//text.text = Dialogue[i];
 			//YieldInstruction WaitForSeconds(timeToWait);
 		//}
-	}
-	void OnMouseExit(){
-		//game.oldManTalk = true;	
 	}
 
 	IEnumerator Speek()
@@ -53,5 +63,7 @@ public class OldManController : MonoBehaviour {
 			text.text = Dialogue[i];
 			yield return new WaitForSeconds(timeToWait);
 		}
+		text.text = ("");
+		game.oldManTalk = true;
 	}
 }
