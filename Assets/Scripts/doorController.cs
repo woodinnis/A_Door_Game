@@ -47,12 +47,12 @@ public class doorController : MonoBehaviour {
 		DialogueLong = DoorDialogue.Length;
 	}
 	// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
 	{
 		// Follow the player
-		Vector3 relativePos = target.transform.position - transform.position;
-		Quaternion rotation = Quaternion.LookRotation(relativePos);
-		transform.rotation = rotation;
+		//Vector3 relativePos = target.transform.position - transform.position;
+		//Quaternion rotation = Quaternion.LookRotation(relativePos);
+		//transform.rotation = rotation;
 
 		// Follow the player
 		DoorFollow();
@@ -113,7 +113,9 @@ public class doorController : MonoBehaviour {
 		{
 			if ((Vector3.Distance (transform.position, target.transform.position) > distanceFromPlayer)) 
 			{
-				transform.Translate (Vector3.forward);
+				//transform.Translate (Vector3.forward);
+				transform.position = Vector3.Lerp(transform.position, target.transform.position, Time.deltaTime);
+				transform.LookAt(target.transform.position);
 			} 
 			else 
 			{

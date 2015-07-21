@@ -8,9 +8,10 @@ public class PlayerController : MonoBehaviour {
 	public float gravity = 20.0f;
 	public float AdjustSpawnY;
 	public Terrain world;
-	public GameController game;
 
+	private GameController game;
 	private CharacterController controller;
+	private GameObject oldMan;
 
 	private Vector3 rotation = Vector3.zero;
 	private Vector3 moveDirection = Vector3.zero;
@@ -44,15 +45,18 @@ public class PlayerController : MonoBehaviour {
 
 	void Start()
 	{
-		controller = GetComponent<CharacterController> ();
+		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
+		game = gameControllerObject.GetComponent<GameController>();
 
+		controller = GetComponent<CharacterController> ();
+		
 		// Move the player to start
 		//transform.position = pStart;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		 
+
 		if (!game.oldManTalk)
 			speed = stop;
 		else
