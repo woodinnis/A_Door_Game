@@ -7,9 +7,10 @@ public class GameController : MonoBehaviour {
 	// Creating a more globally accessable function here would be ideal
 
 	public int[] KarmaLevel;
-	public Canvas MainCanvas;
-	public Camera MainCamera;
-
+	//public Canvas MainCanvas;
+	//public Camera MainCamera;
+	public bool oldManTalk = false;
+	
 	private int karma = 0;
 		
 	// Use this for initialization

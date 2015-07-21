@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour {
 	public float gravity = 20.0f;
 	public float AdjustSpawnY;
 	public Terrain world;
-	
+	public GameController game;
+
 	private CharacterController controller;
 
 	private Vector3 rotation = Vector3.zero;
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour {
 
 	private float pX,pZ,pY;
 	private Vector3 pStart;
+	private float stop = 0.0f;
+	private float go;
 
 	void Awake()
 	{
@@ -28,6 +31,8 @@ public class PlayerController : MonoBehaviour {
 		pY = world.terrainData.GetHeight ((int)pX, (int)pZ);
 
 		pStart = new Vector3 (pX, pY + 1, pZ);
+
+		go = speed;
 	}
 
 	void OnLevelWasLoaded(int Level)
@@ -42,12 +47,17 @@ public class PlayerController : MonoBehaviour {
 		controller = GetComponent<CharacterController> ();
 
 		// Move the player to start
-		transform.position = pStart;
+		//transform.position = pStart;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		 
+		if (!game.oldManTalk)
+			speed = stop;
+		else
+			speed = go;
+
 		// Basic Movement
 		float moveHoriz = Input.GetAxis ("Horizontal");
 		float moveVert = Input.GetAxis ("Vertical");
