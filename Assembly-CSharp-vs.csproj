@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\DialogueController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\InstantiationController.cs" />
      <Compile Include="Assets\Scripts\MinimapCamera.cs" />
@@ -55,6 +56,7 @@
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\coinController.cs" />
      <Compile Include="Assets\Scripts\doorController.cs" />
+     <None Include="Assets\DialogueOldMan.txt" />
      <None Include="Assets\Materials\Wood texture floor_01\readme.txt" />
      <None Include="Assets\DialogueGood.txt" />
      <None Include="Assets\DialogueBad.txt" />
