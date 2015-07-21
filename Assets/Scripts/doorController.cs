@@ -12,6 +12,7 @@ public class doorController : MonoBehaviour {
 
 	private GameController gameController;
 	private CharacterController controller;
+	private DialogueController Speek;
 	
 	public Color[] color;
 
@@ -46,14 +47,10 @@ public class doorController : MonoBehaviour {
 		DoorDialogue = DoorDialogueFile.text.Split ('\n');
 		DialogueLong = DoorDialogue.Length;
 	}
+
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		// Follow the player
-		//Vector3 relativePos = target.transform.position - transform.position;
-		//Quaternion rotation = Quaternion.LookRotation(relativePos);
-		//transform.rotation = rotation;
-
 		// Follow the player
 		DoorFollow();
 
@@ -76,6 +73,16 @@ public class doorController : MonoBehaviour {
 		{
 			gameController.doorEnter ();
 		}
+	}
+
+	void OnMouseEnter()
+	{
+		text.text = DoorDialogue [Random.Range (0, DialogueLong)];
+	}
+
+	void OnMouseExit()
+	{
+		text.text = "";
 	}
 
 	// Adjust the door color based on the current Karma level
@@ -122,14 +129,5 @@ public class doorController : MonoBehaviour {
 				moveDirection = Vector3.zero;
 			}
 		}
-	}
-
-	void OnMouseEnter()
-	{
-		text.text = DoorDialogue [Random.Range (0, DialogueLong)];
-	}
-	void OnMouseExit()
-	{
-		text.text = "";
 	}
 }
