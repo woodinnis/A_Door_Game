@@ -23,6 +23,7 @@ public class doorController : MonoBehaviour {
 	private string[] DoorDialogue;
 	private int DialogueLong;
 	private Text text;
+	//private Image bubble;
 	private bool doorHasArrived = false;
 
 	private Renderer rend;
@@ -35,6 +36,9 @@ public class doorController : MonoBehaviour {
 		// Find the UI object, and set the Text property to a variable
 		GameObject textObject = GameObject.FindWithTag ("UI");
 		text = textObject.GetComponent<Text> ();
+
+		//GameObject bubbleObject = GameObject.FindWithTag("UI");
+		//bubble = bubbleObject.GetComponent<Image>();
 
 		// Assign controllers
 		gameController = gameControllerObject.GetComponent<GameController> ();
@@ -77,12 +81,14 @@ public class doorController : MonoBehaviour {
 
 	void OnMouseEnter()
 	{
+		//bubble.enabled = true;
 		text.text = DoorDialogue [Random.Range (0, DialogueLong)];
 	}
 
 	void OnMouseExit()
 	{
 		text.text = "";
+		//bubble.enabled = false;
 	}
 
 	// Adjust the door color based on the current Karma level

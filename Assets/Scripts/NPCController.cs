@@ -6,6 +6,7 @@ public class NPCController : MonoBehaviour {
 
 	public int SeeMe = 0;
 	public int MeetMe = 0;
+	public float TalkToMe = 5;
 	public Color[] NPCColor;
 	public TextAsset GoodDFile;
 	public TextAsset BadDFile;
@@ -13,6 +14,7 @@ public class NPCController : MonoBehaviour {
 	public float speed = 3.5f;
 
 	private GameController gameController;
+	private PlayerController player;
 	private Collider trigger;
 	private Renderer rend;
 	private Text text;
@@ -30,9 +32,11 @@ public class NPCController : MonoBehaviour {
 	{
 		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
 		GameObject textObject = GameObject.FindWithTag ("UI");
-		
-		text = textObject.GetComponent<Text> ();
+		GameObject playerObject = GameObject.FindWithTag ("Player");
+
 		gameController = gameControllerObject.GetComponent<GameController> ();
+		text = textObject.GetComponent<Text> ();
+		player = playerObject.GetComponent<PlayerController>();
 
 		trigger = GetComponent<Collider> ();
 		rend = GetComponent<Renderer>();
@@ -105,11 +109,15 @@ public class NPCController : MonoBehaviour {
 	{
 		speed = 0f;
 
-		gameController.AddKarma (MeetMe);
-		if (MeetMe > 0)
-			text.text = GoodDialogue [Random.Range (0, GLong)];
-		else
-			text.text = BadDialogue [Random.Range (0, BLong)];
+		float dist = Vector3.Distance(transform.position,player.transform.position);
+		if (dist < TalkToMe)
+		{
+			gameController.AddKarma (MeetMe);
+			if (MeetMe > 0)
+				text.text = GoodDialogue [Random.Range (0, GLong)];
+			else
+				text.text = BadDialogue [Random.Range (0, BLong)];
+		}
 	}
 
 	Vector3 GetMoveLocation()
