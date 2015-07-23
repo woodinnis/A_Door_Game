@@ -10,17 +10,22 @@ public class GameController : MonoBehaviour {
 	//public Canvas MainCanvas;
 	//public Camera MainCamera;
 	public bool oldManTalk = false;
-	
-	private int karma = 0;
-		
-	// Use this for initialization
-	void Start () 
-	{
 
+	private float startTime;
+	private float playTimer;
+
+	private int karma = 0;
+
+	// Use this for initialization
+	void Start (){
+		startTime = Time.time;
 	}
 
-	void Update()
+	void FixedUpdate()
 	{
+		playTimer = Time.timeSinceLevelLoad;
+
+
 		//MainCamera.rect.x = MainCanvas.transform.position.x;
 	}
 	// Loads a final room according to current Karma level

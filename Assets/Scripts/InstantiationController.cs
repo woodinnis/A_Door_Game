@@ -16,7 +16,7 @@ public class InstantiationController : MonoBehaviour {
 	
 	public Transform door;
 	public Transform oldMan;
-	public float oldManSpawnDistance = 0.0f;
+	public float oldManSpawnDistance = 0.0f; // Consider getting this value from the camera controller //
 	public Terrain world;
 
 	private CharacterController characterController;
@@ -38,9 +38,11 @@ public class InstantiationController : MonoBehaviour {
 		Vector3 dStart = new Vector3 (0, 1, 0);
 		Instantiate (door, dStart, Quaternion.identity);
 
+		oldManSpawnDistance = (gameCamera.farClipPlane);
+
 		// Instantiate Old Man into the world
 		Transform CC = characterController.transform;
-		Vector3 oldManStart = new Vector3(CC.position.x + oldManSpawnDistance, 1, CC.position.z + oldManSpawnDistance);
+		Vector3 oldManStart = new Vector3(CC.position.x, 1, CC.position.z + oldManSpawnDistance);
 		Instantiate (oldMan, oldManStart, Quaternion.identity);
 
 
